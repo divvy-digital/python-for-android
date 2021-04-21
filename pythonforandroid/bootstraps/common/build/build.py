@@ -409,6 +409,10 @@ main.py that loads it.''')
         with open(args.intent_filters) as fd:
             args.intent_filters = fd.read()
 
+    if args.extra_application_xml:
+        with open(args.extra_application_xml) as fd:
+            args.extra_application_xml = fd.read()
+
     if not args.add_activity:
         args.add_activity = []
 
@@ -824,6 +828,9 @@ tools directory of the Android SDK.
                     help='Use that parameter if you need to implement your own PythonServive Java class')
     ap.add_argument('--activity-class-name', dest='activity_class_name', default=DEFAULT_PYTHON_ACTIVITY_JAVA_CLASS,
                     help='The full java class name of the main activity')
+    ap.add_argument('--extra-application-xml', default='',
+                    help=('Extra xml to write directly inside the <application> element of'
+                          'AndroidManifest.xml'))
 
     # Put together arguments, and add those from .p4a config file:
     if args is None:
